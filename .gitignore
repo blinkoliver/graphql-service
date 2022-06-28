@@ -1,0 +1,10 @@
+node_modules
+.env
+.lock
+package-lock.json
+yarn.lock
+node-graphql-service/albums/package-lock.json
+node-graphql-service/artists/package-lock.json
+node-graphql-service/bands/package-lock.json
+node-graphql-service/favourites/package-lock.json
+node-graphql-service/users/package-lock.json
