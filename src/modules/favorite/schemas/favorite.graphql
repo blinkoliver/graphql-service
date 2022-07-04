@@ -1,0 +1,44 @@
+type Favorites {
+  id: ID!
+  userId: ID
+  bands: [Band]
+  genres: [Genre]
+  artists: [Artist]
+  tracks: [Track]
+}
+
+type Query {
+  favorite(id: ID!): Favorites
+  favorites(limit: Int, offset: Int): [Favorites]
+}
+
+type Mutation {
+  addTrackToFavourites(
+    userId: ID
+    bands: [Band]
+    genres: [Genre]
+    artists: [Artist]
+    tracks: [Track]
+  ): Artist
+  addBandToFavourites(
+    userId: ID
+    bands: [Band]
+    genres: [Genre]
+    artists: [Artist]
+    tracks: [Track]
+  ): Artist
+  addArtistToFavourites(
+    userId: ID
+    bands: [Band]
+    genres: [Genre]
+    artists: [Artist]
+    tracks: [Track]
+  ): Artist
+  addGenreToFavourites(
+    userId: ID
+    bands: [Band]
+    genres: [Genre]
+    artists: [Artist]
+    tracks: [Track]
+  ): Artist
+}
