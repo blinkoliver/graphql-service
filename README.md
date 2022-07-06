@@ -25,15 +25,9 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+Application is running on http://localhost:3000 or at port from .env
+You can go to http://localhost:3000/graphql to use graphql playground for testing application
 
-```bash
-# unit tests
-$ npm run test
+## Before testing your need install and start this project with microservice
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+[Project with microservice](https://github.com/rolling-scopes-school/node-graphql-service)

@@ -12,30 +12,3 @@ type Query {
   tracks(limit: Int, offset: Int): [Track]
   track(id: ID!): Track
 }
-
-type Mutation {
-  createTrack(
-    title: String!
-    albums: [Album]
-    bands: [Band]
-    duration: Int
-    released: Int
-    genres: [Genre]
-  ): Track
-  deleteTrack(
-    title: String!
-    albums: [Album]
-    bands: [Band]
-    duration: Int
-    released: Int
-    genres: [Genre]
-  ): Track
-  updateTrack(
-    title: String!
-    albums: [Album]
-    bands: [Band]
-    duration: Int
-    released: Int
-    genres: [Genre]
-  ): Track
-}

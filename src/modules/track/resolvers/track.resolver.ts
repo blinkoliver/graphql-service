@@ -1,27 +1,54 @@
 import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { TrackService } from '../services/track.service';
-import { GenreService } from 'src/modules/genre/services/genre.service';
-import { ArtistService } from 'src/modules/artist/services/artist.service';
-import { BandService } from 'src/modules/band/services/band.service';
+import { GenreService } from '../../genre/services/genre.service';
+import { ArtistService } from '../../artist/services/artist.service';
+import { BandService } from '../../band/services/band.service';
 
 @Resolver('Track')
 export class TrackResolver {
-  constructor(
-    private readonly trackService: TrackService,
-    private readonly genreService: GenreService,
-    private readonly artistService: ArtistService,
-    private readonly bandService: BandService,
-  ) {}
-
-  //     @Query{}
-  //     async track(@Args('id') id:String) {
-  //     return this.trackService.findOne(id)
+  // constructor(
+  //   private readonly trackService: TrackService,
+  //   private readonly genreService: GenreService,
+  //   private readonly artistService: ArtistService,
+  //   private readonly bandService: BandService,
+  // ) {}
+  // @Query()
+  // async track(@Args('id') id: string) {
+  //   console.log(id);
+  //   // return this.trackService.findOne(id);
   // }
-  //      @Query{}
-  //     async tracks() {
-  //     return this.trackService.findAll()
+  // @Query()
+  // async tracks() {
+  //   // return this.trackService.findAll();
   // }
-  //
   // @Resolver()
   // @ResolveField()
+  // async bands(@Parent() track) {
+  //   const { bandsIds } = track;
+  //   return await Promise.all(
+  //     bandsIds.map((id) => {
+  //       // return this.bandService.findOne(id);
+  //     }),
+  //   );
+  // }
+  // @Resolver()
+  // @ResolveField()
+  // async artists(@Parent() track) {
+  //   const { artistsIds } = track;
+  //   return await Promise.all(
+  //     artistsIds.map((id) => {
+  //       // return this.artistService.findOne(id);
+  //     }),
+  //   );
+  // }
+  // @Resolver()
+  // @ResolveField()
+  // async genres(@Parent() track) {
+  //   const { genresIds } = track;
+  //   return await Promise.all(
+  //     genresIds.map((id) => {
+  //       // return this.genreService.findOne(id);
+  //     }),
+  //   );
+  // }
 }

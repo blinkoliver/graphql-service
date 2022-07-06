@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -18,7 +19,11 @@ import { AlbumResolver } from './modules/album/resolvers/album.resolver';
 import { FavoriteResolver } from './modules/favorite/resolvers/favorite.resolver';
 @Module({
   imports: [
-    GraphQLModule.forRoot({}),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      typePaths: ['./**/*.graphql'],
+      installSubscriptionHandlers: true,
+    }),
     ArtistModule,
     UserModule,
     BandModule,
@@ -27,16 +32,16 @@ import { FavoriteResolver } from './modules/favorite/resolvers/favorite.resolver
     AlbumModule,
     FavoriteModule,
   ],
-  controllers: [AppController],
-  providers: [
-    AppService,
-    ArtistResolver,
-    UserResolver,
-    BandResolver,
-    GenreResolver,
-    TrackResolver,
-    AlbumResolver,
-    FavoriteResolver,
-  ],
+  // controllers: [AppController],
+  // providers: [
+  //   AppService,
+  //   ArtistResolver,
+  //   UserResolver,
+  //   BandResolver,
+  //   GenreResolver,
+  //   TrackResolver,
+  //   AlbumResolver,
+  //   FavoriteResolver,
+  // ],
 })
 export class AppModule {}

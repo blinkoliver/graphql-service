@@ -1,3 +1,6 @@
+type JWT {
+  jwt: String!
+}
 type User {
   id: ID!
   firstName: String
