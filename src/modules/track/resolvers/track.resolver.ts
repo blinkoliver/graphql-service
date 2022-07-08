@@ -1,8 +1,18 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Context,
+  Resolver,
+} from '@nestjs/graphql';
 import { TrackService } from '../services/track.service';
 import { GenreService } from '../../genre/services/genre.service';
 import { ArtistService } from '../../artist/services/artist.service';
 import { BandService } from '../../band/services/band.service';
+import { Track, CreateTrack, UpdateTrack } from '../../../graphql.schema';
+import { Config } from '../../../types';
 
 @Resolver('Track')
 export class TrackResolver {
@@ -11,6 +21,15 @@ export class TrackResolver {
   // private readonly artistService: ArtistService,
   // private readonly bandService: BandService,
 
+  @Mutation('createTrack')
+  create(
+    @Args('createTrack') createTrack: CreateTrack,
+    @Context() ctx: Config,
+  ) {
+    console.log(ctx);
+    return this.trackService.create(createTrack, ctx.config);
+  }
+
   @Query('tracks')
   async tracks(
     @Args('limit', { defaultValue: 2 }) limit: number,
@@ -18,11 +37,25 @@ export class TrackResolver {
   ) {
     return this.trackService.findAll(limit, offset);
   }
-  // @Query()
-  // async track(@Args('id') id: string) {
-  //   console.log(id);
-  //   return this.trackService.findOne(id);
-  // }
+
+  @Query('track')
+  async track(@Args('id') id: string) {
+    return this.trackService.findOne(id);
+  }
+
+  @Mutation('updateTrack')
+  update(
+    @Args('id') id: string,
+    @Args('updateTrack') updateTrack: UpdateTrack,
+    @Context() ctx: Config,
+  ) {
+    return this.trackService.update(id, updateTrack, ctx.config);
+  }
+
+  @Mutation('deleteTrack')
+  remove(@Args('id') id: string, @Context() ctx: Config) {
+    return this.trackService.delete(id, ctx.config);
+  }
   // @Resolver()
   // @ResolveField()
   // async bands(@Parent() track) {

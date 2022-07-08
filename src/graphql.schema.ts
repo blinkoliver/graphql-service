@@ -7,6 +7,24 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface CreateTrack {
+    title: string;
+    albums?: Nullable<Nullable<string>[]>;
+    bands?: Nullable<Nullable<string>[]>;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    genres?: Nullable<Nullable<string>[]>;
+}
+
+export interface UpdateTrack {
+    title?: Nullable<string>;
+    albums?: Nullable<Nullable<string>[]>;
+    bands?: Nullable<Nullable<string>[]>;
+    duration?: Nullable<number>;
+    released?: Nullable<number>;
+    genres?: Nullable<Nullable<string>[]>;
+}
+
 export interface Album {
     id: string;
     name?: Nullable<string>;
@@ -31,8 +49,8 @@ export interface IQuery {
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Genre>[]> | Promise<Nullable<Nullable<Genre>[]>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
     track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
+    jwt(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
     user(id: string): Nullable<User> | Promise<Nullable<User>>;
-    users(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<User>[]> | Promise<Nullable<Nullable<User>[]>>;
 }
 
 export interface Artist {
@@ -87,6 +105,18 @@ export interface Track {
     duration?: Nullable<number>;
     released?: Nullable<number>;
     genres?: Nullable<Nullable<Genre>[]>;
+}
+
+export interface IMutation {
+    createTrack(createTrack: CreateTrack): Track | Promise<Track>;
+    updateTrack(id: string, updateTrack?: Nullable<UpdateTrack>): Track | Promise<Track>;
+    deleteTrack(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
+    register(firstName: string, lastName: string, password: string, email: string): User | Promise<User>;
+}
+
+export interface Delete {
+    acknowledged?: Nullable<boolean>;
+    deletedCount?: Nullable<number>;
 }
 
 export interface JWT {
