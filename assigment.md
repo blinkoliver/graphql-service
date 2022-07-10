@@ -196,8 +196,8 @@ type Track {
 - genres +10
 - track +10
 - tracks +10
-- band
-- bands
+- band +10
+- bands +10
 - album
 - albums
 - jwt +10
@@ -215,9 +215,9 @@ The following mutation should be created:
   - deleteGenre +10
   - updateGenre +10
 - Bands
-  - createBand
-  - deleteBand
-  - updateBand
+  - createBand +10
+  - deleteBand +10
+  - updateBand +10
 - Tracks
   - createTrack +10
   - deleteTrack +10

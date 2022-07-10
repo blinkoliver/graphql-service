@@ -10,7 +10,7 @@ import {
 import { TrackService } from '../services/track.service';
 import { GenreService } from '../../genre/services/genre.service';
 import { ArtistService } from '../../artist/services/artist.service';
-import { BandService } from '../../band/services/band.service';
+import { BandService } from '../../bands/services/band.service';
 import { Track, CreateTrack, UpdateTrack } from '../../../graphql.schema';
 import { Token } from 'src/decorators/token.decorators';
 
