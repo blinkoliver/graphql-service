@@ -5,13 +5,13 @@ import { Token } from 'src/decorators/token.decorators';
 
 @Resolver('Artist')
 export class ArtistResolver {
-  constructor(private readonly ArtistService: ArtistService) {}
+  constructor(private readonly artistService: ArtistService) {}
   @Mutation('createArtist')
   create(
     @Args('createArtist') createTrack: CreateArtist,
     @Token() token: string,
   ) {
-    return this.ArtistService.create(createTrack, token);
+    return this.artistService.create(createTrack, token);
   }
 
   @Query('artists')
@@ -19,12 +19,12 @@ export class ArtistResolver {
     @Args('limit', { defaultValue: 2 }) limit: number,
     @Args('offset', { defaultValue: 0 }) offset: number,
   ) {
-    return this.ArtistService.findAll(limit, offset);
+    return this.artistService.findAll(limit, offset);
   }
 
   @Query('artist')
   async track(@Args('id') id: string) {
-    return this.ArtistService.findOne(id);
+    return this.artistService.findOne(id);
   }
 
   @Mutation('updateArtist')
@@ -33,11 +33,11 @@ export class ArtistResolver {
     @Args('updateArtist') updateTrack: UpdateArtist,
     @Token() token: string,
   ) {
-    return this.ArtistService.update(id, updateTrack, token);
+    return this.artistService.update(id, updateTrack, token);
   }
 
   @Mutation('deleteArtist')
   remove(@Args('id') id: string, @Token() token: string) {
-    return this.ArtistService.delete(id, token);
+    return this.artistService.delete(id, token);
   }
 }

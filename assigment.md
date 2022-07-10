@@ -192,8 +192,8 @@ type Track {
 
 - artist +10
 - artists +10
-- genre
-- genres
+- genre +10
+- genres +10
 - track +10
 - tracks +10
 - band
@@ -211,9 +211,9 @@ The following mutation should be created:
   - deleteArtist +10
   - updateArtist +10
 - Genres
-  - createGenre
-  - deleteGenre
-  - updateGenre
+  - createGenre +10
+  - deleteGenre +10
+  - updateGenre +10
 - Bands
   - createBand
   - deleteBand

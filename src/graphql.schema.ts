@@ -29,6 +29,20 @@ export interface UpdateArtist {
     instruments?: Nullable<Nullable<string>[]>;
 }
 
+export interface CreateGenre {
+    name: string;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
+export interface UpdateGenre {
+    name?: Nullable<string>;
+    description?: Nullable<string>;
+    country?: Nullable<string>;
+    year?: Nullable<number>;
+}
+
 export interface CreateTrack {
     title: string;
     albums?: Nullable<Nullable<string>[]>;
@@ -67,8 +81,8 @@ export interface IQuery {
     bands(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Band>[]> | Promise<Nullable<Nullable<Band>[]>>;
     favorite(id: string): Nullable<Favorites> | Promise<Nullable<Favorites>>;
     favorites(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Favorites>[]> | Promise<Nullable<Nullable<Favorites>[]>>;
-    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     genres(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Genre>[]> | Promise<Nullable<Nullable<Genre>[]>>;
+    genre(id: string): Nullable<Genre> | Promise<Nullable<Genre>>;
     tracks(limit?: Nullable<number>, offset?: Nullable<number>): Nullable<Nullable<Track>[]> | Promise<Nullable<Nullable<Track>[]>>;
     track(id: string): Nullable<Track> | Promise<Nullable<Track>>;
     jwt(email: string, password: string): Nullable<JWT> | Promise<Nullable<JWT>>;
@@ -91,6 +105,9 @@ export interface IMutation {
     createArtist(createArtist: CreateArtist): Artist | Promise<Artist>;
     updateArtist(id: string, updateArtist?: Nullable<UpdateArtist>): Artist | Promise<Artist>;
     deleteArtist(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
+    createGenre(createGenre: CreateGenre): Genre | Promise<Genre>;
+    updateGenre(id: string, updateGenre?: Nullable<UpdateGenre>): Genre | Promise<Genre>;
+    deleteGenre(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
     createTrack(createTrack: CreateTrack): Track | Promise<Track>;
     updateTrack(id: string, updateTrack?: Nullable<UpdateTrack>): Track | Promise<Track>;
     deleteTrack(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
