@@ -7,6 +7,28 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export interface CreateArtist {
+    firstName?: Nullable<string>;
+    secondName?: Nullable<string>;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
+    country?: Nullable<string>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<Nullable<string>[]>;
+}
+
+export interface UpdateArtist {
+    firstName?: Nullable<string>;
+    secondName?: Nullable<string>;
+    middleName?: Nullable<string>;
+    birthDate?: Nullable<string>;
+    birthPlace?: Nullable<string>;
+    country?: Nullable<string>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<Nullable<string>[]>;
+}
+
 export interface CreateTrack {
     title: string;
     albums?: Nullable<Nullable<string>[]>;
@@ -61,8 +83,18 @@ export interface Artist {
     birthDate?: Nullable<string>;
     birthPlace?: Nullable<string>;
     country?: Nullable<string>;
-    bands?: Nullable<Nullable<Band>[]>;
-    instruments?: Nullable<string>;
+    bandsIds?: Nullable<Nullable<string>[]>;
+    instruments?: Nullable<Nullable<string>[]>;
+}
+
+export interface IMutation {
+    createArtist(createArtist: CreateArtist): Artist | Promise<Artist>;
+    updateArtist(id: string, updateArtist?: Nullable<UpdateArtist>): Artist | Promise<Artist>;
+    deleteArtist(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
+    createTrack(createTrack: CreateTrack): Track | Promise<Track>;
+    updateTrack(id: string, updateTrack?: Nullable<UpdateTrack>): Track | Promise<Track>;
+    deleteTrack(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
+    register(firstName: string, lastName: string, password: string, email: string): User | Promise<User>;
 }
 
 export interface Member {
@@ -105,13 +137,6 @@ export interface Track {
     duration?: Nullable<number>;
     released?: Nullable<number>;
     genres?: Nullable<Nullable<Genre>[]>;
-}
-
-export interface IMutation {
-    createTrack(createTrack: CreateTrack): Track | Promise<Track>;
-    updateTrack(id: string, updateTrack?: Nullable<UpdateTrack>): Track | Promise<Track>;
-    deleteTrack(id: string): Nullable<Delete> | Promise<Nullable<Delete>>;
-    register(firstName: string, lastName: string, password: string, email: string): User | Promise<User>;
 }
 
 export interface Delete {

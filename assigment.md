@@ -190,8 +190,8 @@ type Track {
 
 3. The following queries should be created:
 
-- artist
-- artists
+- artist +10
+- artists +10
 - genre
 - genres
 - track +10
@@ -219,9 +219,9 @@ The following mutation should be created:
   - deleteBand
   - updateBand
 - Tracks
-  - createTrack
-  - deleteTrack
-  - updateTrack
+  - createTrack +10
+  - deleteTrack +10
+  - updateTrack +10
 - Albums
   - createAlbum
   - deleteAlbum

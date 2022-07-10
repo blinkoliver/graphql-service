@@ -11,7 +11,7 @@ export class TrackService {
   create(
     createTrack: CreateTrack,
     token: string,
-  ): Observable<AxiosResponse<Track[]>> {
+  ): Observable<AxiosResponse<Track>> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         'Content-Type': 'application/json',
