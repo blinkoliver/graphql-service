@@ -198,8 +198,8 @@ type Track {
 - tracks +10
 - band +10
 - bands +10
-- album
-- albums
+- album +10
+- albums +10
 - jwt +10
 - user +10
 - favourites (available only for logged in user)
@@ -223,9 +223,9 @@ The following mutation should be created:
   - deleteTrack +10
   - updateTrack +10
 - Albums
-  - createAlbum
-  - deleteAlbum
-  - updateAlbum
+  - createAlbum +10
+  - deleteAlbum +10
+  - updateAlbum +10
 - Users
   - register +10
 - Favourites
