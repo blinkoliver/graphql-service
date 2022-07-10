@@ -207,9 +207,9 @@ type Track {
 The following mutation should be created:
 
 - Artists
-  - createArtist
-  - deleteArtist
-  - updateArtist
+  - createArtist +10
+  - deleteArtist +10
+  - updateArtist +10
 - Genres
   - createGenre
   - deleteGenre

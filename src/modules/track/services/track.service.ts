@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { Track, CreateTrack, UpdateTrack } from '../../../graphql.schema';
-import { Config } from '../../../types';
 import { HttpService } from '@nestjs/axios';
 import { Observable, map } from 'rxjs';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -11,12 +10,16 @@ export class TrackService {
 
   create(
     createTrack: CreateTrack,
-    config: Config['config'],
+    token: string,
   ): Observable<AxiosResponse<Track[]>> {
-    console.log(createTrack, config);
-
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
+    };
     return this.httpService
-      .post(trackMicroserviceURL, createTrack, config)
+      .post(trackMicroserviceURL, createTrack, requestConfig)
       .pipe(
         map((res) => {
           return res.data;
@@ -45,13 +48,16 @@ export class TrackService {
   update(
     id: string,
     updateTrack: UpdateTrack,
-    config: Config['config'],
+    token: string,
   ): Observable<AxiosResponse<Track>> {
-    const updatedConfig: AxiosRequestConfig = {
-      params: { id, config },
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
     };
     return this.httpService
-      .put(trackMicroserviceURL, updateTrack, updatedConfig)
+      .put(`${trackMicroserviceURL}/${id}`, updateTrack, requestConfig)
       .pipe(
         map((res) => {
           return res.data;
@@ -59,14 +65,19 @@ export class TrackService {
       );
   }
 
-  delete(id: string, config: Config['config']) {
-    const updatedConfig: AxiosRequestConfig = {
-      params: { id, config },
+  delete(id: string, token: any) {
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: token,
+      },
     };
-    return this.httpService.delete(trackMicroserviceURL, updatedConfig).pipe(
-      map((res) => {
-        return res.data;
-      }),
-    );
+    return this.httpService
+      .delete(`${trackMicroserviceURL}/${id}`, requestConfig)
+      .pipe(
+        map((res) => {
+          return res.data;
+        }),
+      );
   }
 }

@@ -12,7 +12,7 @@ import { GenreService } from '../../genre/services/genre.service';
 import { ArtistService } from '../../artist/services/artist.service';
 import { BandService } from '../../band/services/band.service';
 import { Track, CreateTrack, UpdateTrack } from '../../../graphql.schema';
-import { Config } from '../../../types';
+import { Token } from 'src/decorators/token.decorators';
 
 @Resolver('Track')
 export class TrackResolver {
@@ -24,10 +24,9 @@ export class TrackResolver {
   @Mutation('createTrack')
   create(
     @Args('createTrack') createTrack: CreateTrack,
-    @Context() ctx: Config,
+    @Token() token: string,
   ) {
-    console.log(ctx);
-    return this.trackService.create(createTrack, ctx.config);
+    return this.trackService.create(createTrack, token);
   }
 
   @Query('tracks')
@@ -47,15 +46,16 @@ export class TrackResolver {
   update(
     @Args('id') id: string,
     @Args('updateTrack') updateTrack: UpdateTrack,
-    @Context() ctx: Config,
+    @Token() token: string,
   ) {
-    return this.trackService.update(id, updateTrack, ctx.config);
+    return this.trackService.update(id, updateTrack, token);
   }
 
   @Mutation('deleteTrack')
-  remove(@Args('id') id: string, @Context() ctx: Config) {
-    return this.trackService.delete(id, ctx.config);
+  remove(@Args('id') id: string, @Token() token: string) {
+    return this.trackService.delete(id, token);
   }
+
   // @Resolver()
   // @ResolveField()
   // async bands(@Parent() track) {
